@@ -1,0 +1,75 @@
+:root {
+  /* Gaia Brand Colors */
+  --gaia-dark-blue: #03163A;
+  --gaia-blue: #0C1C68;
+  --gaia-purple: #450B86;
+  --gaia-light-purple: #AF2491;
+  --gaia-pink: #E13C72;
+  --gaia-turquoise: #7EE1D7;
+  --gaia-orange: #FB6846;
+  --gaia-bg-light: #F4F7FC;
+  --gaia-bg-white: #FAFCFF;
+  --gaia-bg-black: #090921;
+
+  /* Semantic tokens */
+  --background: var(--gaia-bg-light);
+  --foreground: var(--gaia-dark-blue);
+  --card: #ffffff;
+  --card-foreground: var(--gaia-dark-blue);
+  --muted: #e8edf5;
+  --muted-foreground: #64748b;
+  --border: #dfe4ed;
+  --input: #dfe4ed;
+  --ring: var(--gaia-blue);
+  --primary: var(--gaia-blue);
+  --primary-hover: var(--gaia-purple);
+
+  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--foreground);
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--gaia-blue);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--gaia-purple);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
