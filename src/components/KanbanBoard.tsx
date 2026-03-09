@@ -59,6 +59,7 @@ export function KanbanBoard() {
       </div>
       {showForm && (
         <TaskForm
+          key={editingTask?.id ?? "new"}
           editingTask={editingTask}
           onSubmit={handleFormSubmit}
           onUpdate={handleFormUpdate}

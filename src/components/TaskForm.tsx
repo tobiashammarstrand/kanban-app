@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import type { Task } from "../types/task";
 
 const COLOR_OPTIONS = [
@@ -20,21 +20,9 @@ interface TaskFormProps {
 }
 
 export function TaskForm({ editingTask, onSubmit, onUpdate, onCancel }: TaskFormProps) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (editingTask) {
-      setTitle(editingTask.title);
-      setDescription(editingTask.description);
-      setColor(editingTask.color ?? null);
-    } else {
-      setTitle("");
-      setDescription("");
-      setColor(null);
-    }
-  }, [editingTask]);
+  const [title, setTitle] = useState(editingTask?.title ?? "");
+  const [description, setDescription] = useState(editingTask?.description ?? "");
+  const [color, setColor] = useState<string | null>(editingTask?.color ?? null);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
