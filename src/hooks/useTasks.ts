@@ -23,20 +23,21 @@ export function useTasks() {
     saveTasks(tasks);
   }, [tasks]);
 
-  const addTask = useCallback((title: string, description: string) => {
+  const addTask = useCallback((title: string, description: string, color?: string | null) => {
     const task: Task = {
       id: crypto.randomUUID(),
       title,
       description,
       status: "todo",
       createdAt: new Date().toISOString(),
+      ...(color ? { color } : {}),
     };
     setTasks((prev) => [...prev, task]);
     return task;
   }, []);
 
   const updateTask = useCallback(
-    (id: string, updates: Partial<Pick<Task, "title" | "description">>) => {
+    (id: string, updates: Partial<Pick<Task, "title" | "description" | "color">>) => {
       setTasks((prev) =>
         prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
       );

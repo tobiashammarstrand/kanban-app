@@ -64,4 +64,69 @@ describe("TaskCard", () => {
     const card = screen.getByTestId("task-test-1");
     expect(card).toHaveAttribute("draggable", "true");
   });
+
+  it("renders a color strip when task has a color", () => {
+    const taskWithColor = { ...mockTask, color: "#E5484D" };
+    render(
+      <TaskCard task={taskWithColor} onEdit={vi.fn()} onDelete={vi.fn()} />
+    );
+
+    const strip = screen.getByTestId("color-strip");
+    expect(strip).toBeInTheDocument();
+    expect(strip).toHaveStyle({ backgroundColor: "#E5484D" });
+  });
+
+  it("does not render a color strip when task has no color field", () => {
+    render(
+      <TaskCard task={mockTask} onEdit={vi.fn()} onDelete={vi.fn()} />
+    );
+
+    expect(screen.queryByTestId("color-strip")).not.toBeInTheDocument();
+  });
+
+  it("does not render a color strip when task color is null", () => {
+    const taskNullColor = { ...mockTask, color: null };
+    render(
+      <TaskCard task={taskNullColor} onEdit={vi.fn()} onDelete={vi.fn()} />
+    );
+
+    expect(screen.queryByTestId("color-strip")).not.toBeInTheDocument();
+  });
+
+  it("does not render a color strip when task color is undefined", () => {
+    const taskUndefinedColor = { ...mockTask, color: undefined };
+    render(
+      <TaskCard task={taskUndefinedColor} onEdit={vi.fn()} onDelete={vi.fn()} />
+    );
+
+    expect(screen.queryByTestId("color-strip")).not.toBeInTheDocument();
+  });
+
+  it("renders title, description, and actions correctly alongside a color strip", () => {
+    const taskWithColor = { ...mockTask, color: "#3B82F6" };
+    render(
+      <TaskCard task={taskWithColor} onEdit={vi.fn()} onDelete={vi.fn()} />
+    );
+
+    expect(screen.getByTestId("color-strip")).toBeInTheDocument();
+    expect(screen.getByText("Test Task")).toBeInTheDocument();
+    expect(screen.getByText("A test description")).toBeInTheDocument();
+    expect(screen.getByLabelText("Edit task")).toBeInTheDocument();
+    expect(screen.getByLabelText("Delete task")).toBeInTheDocument();
+  });
+
+  it("renders each of the 8 predefined colors correctly", () => {
+    const colors = ["#E5484D", "#FB6846", "#F5B041", "#30A46C", "#3B82F6", "#8E4EC6", "#E13C72", "#94A3B8"];
+
+    colors.forEach((hex) => {
+      const taskWithColor = { ...mockTask, id: `test-${hex}`, color: hex };
+      const { unmount } = render(
+        <TaskCard task={taskWithColor} onEdit={vi.fn()} onDelete={vi.fn()} />
+      );
+
+      const strip = screen.getByTestId("color-strip");
+      expect(strip).toHaveStyle({ backgroundColor: hex });
+      unmount();
+    });
+  });
 });

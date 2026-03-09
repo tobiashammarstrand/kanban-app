@@ -19,6 +19,13 @@ export function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
       onDragStart={handleDragStart}
       data-testid={`task-${task.id}`}
     >
+      {task.color && (
+        <div
+          className="task-color-strip"
+          data-testid="color-strip"
+          style={{ backgroundColor: task.color }}
+        />
+      )}
       <h3 className="task-title">{task.title}</h3>
       {task.description && (
         <p className="task-description">{task.description}</p>
