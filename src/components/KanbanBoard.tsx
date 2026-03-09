@@ -20,12 +20,12 @@ export function KanbanBoard() {
     setShowForm(true);
   }
 
-  function handleFormSubmit(title: string, description: string) {
-    addTask(title, description);
+  function handleFormSubmit(title: string, description: string, color?: string | null) {
+    addTask(title, description, color);
     setShowForm(false);
   }
 
-  function handleFormUpdate(id: string, updates: { title?: string; description?: string }) {
+  function handleFormUpdate(id: string, updates: { title?: string; description?: string; color?: string | null }) {
     updateTask(id, updates);
     setShowForm(false);
     setEditingTask(null);

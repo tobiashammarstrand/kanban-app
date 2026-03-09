@@ -6,6 +6,7 @@ export interface Task {
   description: string;
   status: TaskStatus;
   createdAt: string;
+  color?: string | null;
 }
 
 export interface Column {
